@@ -1,0 +1,44 @@
+.magic-bar {
+  box-sizing: border-box;
+  position: absolute;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  overflow-y: scroll;
+  width: 400px;
+  padding: 20px;
+  border-left: 1px solid #aaa;
+  background-color: white;
+  z-index: 100;
+
+  transition: transform 0.55s ease
+}
+
+.show-me {
+  position: absolute;
+  right: 0;
+  top: 20%;
+  background: pink;
+  z-index: 10;
+}
+
+.magic-bar--closed {
+  transform: translateX(400px);
+}
+
+.magic-bar .image-list .item-image {
+  cursor: pointer;
+  display: block;
+  width: 48%;
+  margin: 1%;
+}
+
+.magic-bar .image-list .item-image:hover {
+  opacity: 0.8;
+}
+
+.magic-bar .image-list {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+}

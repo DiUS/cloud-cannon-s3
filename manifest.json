@@ -1,0 +1,22 @@
+{
+  "manifest_version": 2,
+
+  "name": "DiUS Cloud Cannon Helper",
+  "description": "Designed to make integrations more palatable in Cloud Cannon",
+  "version": "1.0",
+  "icons": { 
+    "16": "icon2.png",
+    "48": "icon2.png",
+    "128": "icon2.png"
+  },
+  "browser_action": {
+    "default_icon": "icon2.png" 
+  },
+  "background": {
+    "scripts": ["background.js"],
+    "persistent": false
+  },
+  "permissions": [
+    "https://app.cloudcannon.com/*"
+  ]
+}
