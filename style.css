@@ -26,18 +26,18 @@
   transform: translateX(-400px);
 }
 
-.magic-bar .image-list .item-image {
+.magic-bar__image {
   cursor: pointer;
   display: block;
   width: 48%;
   margin: 1%;
 }
 
-.magic-bar .image-list .item-image:hover {
+.magic-bar__image:hover {
   opacity: 0.8;
 }
 
-.magic-bar .image-list {
+.magic-bar__image-list {
   display: flex;
   flex-wrap: wrap;
   align-items: center;

@@ -10,7 +10,7 @@ class ImageDrawer {
          <div><a href="#" id="magic-bar-close">Close</a></div>
          <h4>Images</h4>
          <input type="text" id="search-filter" placeholder="Search...">
-         <div id="image-list" class="image-list"></div>
+         <div id="image-list" class="magic-bar__image-list"></div>
       </div>`
     this.sitePrefix = 'https://s3-ap-southeast-2.amazonaws.com/dius-site'
     this.imgixPrefix = 'http://dius.imgix.net'
@@ -82,7 +82,7 @@ class ImageDrawer {
     this.imageListElem.innerHTML = truncatedImageList.map(image => {
       const imageElem = document.createElement('img')
       imageElem.src = `${this.sitePrefix}/${image.Key}`
-      imageElem.className = 'item-image'
+      imageElem.className = 'magic-bar__image'
       imageElem.dataset.imagePath = image.Key
       return imageElem.outerHTML
     }).join('')
