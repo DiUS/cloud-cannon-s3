@@ -4,7 +4,7 @@ class ImageDrawer {
     this.filteredImages = []
     this.awsBucket = 'dius-site'
     this.awsPrefix = 'images/'
-    this.html = 
+    this.html =
       `<a class="show-me" id="show-me" href="#">Images</a>
        <div class="magic-bar magic-bar--closed">
          <div><a href="#" id="magic-bar-close">Close</a></div>
@@ -13,7 +13,7 @@ class ImageDrawer {
          <div id="image-list" class="image-list"></div>
       </div>`
     this.sitePrefix = 'https://s3-ap-southeast-2.amazonaws.com/dius-site'
-    this.imgixPrefix = '{{ site.settings.image_base }}'
+    this.imgixPrefix = 'http://dius.imgix.net'
 
     document.addEventListener('click', this.onShowDrawerClick.bind(this))
     document.addEventListener('click', this.onCloseDrawerClick.bind(this))
@@ -35,7 +35,7 @@ class ImageDrawer {
 
   onSearchKeyUp(e) {
     if (e.target.id !== 'search-filter') return false
-    
+
     const filter = e.target.value
     this.renderImages(this.images.filter(image => {
       return image.Key.contains(filter)
@@ -47,7 +47,7 @@ class ImageDrawer {
     e.preventDefault()
 
     const scriptElem = document.createElement('script')
-    scriptElem.textContent = 
+    scriptElem.textContent =
       `(function () {
          let iframeCKEDITOR = document.getElementById('editor-iframe').contentWindow.CKEDITOR
          iframeCKEDITOR.instances['markdown-editor-wrapper'].insertHtml('<img src="${this.buildImgixURL(e.target)}">')
@@ -78,7 +78,7 @@ class ImageDrawer {
     let maxCount = 10
     if (filteredImages.length < maxCount) maxCount = filteredImages.length
     const truncatedImageList = filteredImages.slice(0, maxCount - 1)
-    
+
     this.imageListElem.innerHTML = truncatedImageList.map(image => {
       const imageElem = document.createElement('img')
       imageElem.src = `${this.sitePrefix}/${image.Key}`
@@ -106,9 +106,9 @@ class ImageDrawer {
 
   configureAWS() {
     AWS.config.update({
-      accessKeyId: '<put_your_key_here>',
-      secretAccessKey: '<put_your_secret_key_here>',
-      region: '<put_your_region_here>'
+      accessKeyId: 'AKIAJVNDVD5TPCF4XLTQ',
+      secretAccessKey: 'bQ+9Uy8ZAhnFClfoVLdd+s2M56BzZgDdmtXJKAiL',
+      region: 'ap-southeast-2'
     })
   }
 
