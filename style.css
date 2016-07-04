@@ -1,7 +1,7 @@
 .magic-bar {
   box-sizing: border-box;
   position: absolute;
-  right: 0;
+  left: 0;
   top: 0;
   bottom: 0;
   overflow-y: scroll;
@@ -9,21 +9,21 @@
   padding: 20px;
   border-left: 1px solid #aaa;
   background-color: white;
-  z-index: 100;
+  z-index: 1000;
 
   transition: transform 0.55s ease
 }
 
 .show-me {
   position: absolute;
-  right: 0;
+  left: 0;
   top: 20%;
   background: pink;
-  z-index: 10;
+  z-index: 100;
 }
 
 .magic-bar--closed {
-  transform: translateX(400px);
+  transform: translateX(-400px);
 }
 
 .magic-bar .image-list .item-image {

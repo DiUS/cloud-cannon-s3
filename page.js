@@ -13,7 +13,7 @@ class ImageDrawer {
          <div id="image-list" class="image-list"></div>
       </div>`
     this.sitePrefix = 'https://s3-ap-southeast-2.amazonaws.com/dius-site'
-    this.imgixPrefix = '{{ site.settings.image_base }}'
+    this.imgixPrefix = 'http://dius.imgix.net'
 
     document.addEventListener('click', this.onShowDrawerClick.bind(this))
     document.addEventListener('click', this.onCloseDrawerClick.bind(this))
@@ -77,7 +77,7 @@ class ImageDrawer {
   renderImages(filteredImages) {
     let maxCount = 10
     if (filteredImages.length < maxCount) maxCount = filteredImages.length
-    const truncatedImageList = filteredImages.slice(0, maxCount - 1)
+    const truncatedImageList = filteredImages.slice(0, maxCount)
     
     this.imageListElem.innerHTML = truncatedImageList.map(image => {
       const imageElem = document.createElement('img')
