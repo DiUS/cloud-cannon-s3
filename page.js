@@ -43,7 +43,7 @@ class ImageDrawer {
   }
 
   onImageClick(e) {
-    if (!e.target.className.contains('item-image')) return false
+    if (!e.target.className.contains('magic-bar__image')) return false
     e.preventDefault()
 
     const scriptElem = document.createElement('script')
@@ -84,7 +84,8 @@ class ImageDrawer {
       imageElem.src = `${this.sitePrefix}/${image.Key}`
       imageElem.className = 'magic-bar__image'
       imageElem.dataset.imagePath = image.Key
-      return imageElem.outerHTML
+      const imgixURL = this.buildImgixURL(imageElem)
+      return `<div class="magic-bar__image-wrapper">${imageElem.outerHTML}<p>${imgixURL}</p></div>`
     }).join('')
   }
 

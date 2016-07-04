@@ -26,19 +26,32 @@
   transform: translateX(-400px);
 }
 
-.magic-bar__image {
+.magic-bar__image-list {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+}
+
+.magic-bar__image-wrapper {
+  position: relative;
   cursor: pointer;
   display: block;
   width: 48%;
   margin: 1%;
 }
 
+.magic-bar__image {
+  width: 100%;
+}
+
 .magic-bar__image:hover {
   opacity: 0.8;
 }
 
-.magic-bar__image-list {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
+.magic-bar__image-wrapper p {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  background: black;
+  color: white;
 }
