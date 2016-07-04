@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>...</title>
+  <style>
+    body { padding: 10px; }
+    .label { text-align: right; width: 40%; }
+    table { width: 100%; }
+    input { width: 100%; }
+    .button { text-align: right; }
+  </style>
+</head>
+
+<body>
+  
+  <div id="status"></div>
+
+  <table>
+    <tr>
+      <td class="label"><label>AWS Access Key ID: </label></td>
+      <td><input type="text" name="aws-access-key-id" id="aws-access-key-id"></td>
+    </tr>
+
+    <tr>
+      <td class="label"><label>AWS Secret Access Key: </label></td>
+      <td><input type="password" name="aws-secret-access-key" id="aws-secret-access-key"></td>
+    </tr>
+
+    <tr>
+      <td class="label"><label>AWS region: </label></td>
+      <td><input type="text" name="aws-region" id="aws-region"></td>
+    </tr>
+
+    <tr>
+      <td></td>
+      <td class="button"><button id="save">Save</button></td>
+    </tr>
+  </table>
+  
+  <script src="options.js"></script>
+</body>
+</html>

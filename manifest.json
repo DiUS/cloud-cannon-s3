@@ -17,6 +17,11 @@
     "persistent": false
   },
   "permissions": [
-    "https://app.cloudcannon.com/*"
-  ]
+    "https://app.cloudcannon.com/*",
+    "storage"
+  ],
+  "options_ui": {
+    "page": "options.html",
+    "chrome_style": true
+  }
 }

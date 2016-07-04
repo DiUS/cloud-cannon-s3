@@ -89,9 +89,12 @@ class ImageDrawer {
   }
 
   init() {
+    var that = this
     this.render()
     this.configureAWS()
-    this.loadImagesFromAWS(null, this.onImagesLoaded.bind(this))
+      .then(function() {
+        that.loadImagesFromAWS(null, that.onImagesLoaded.bind(that))
+      })
   }
 
   render() {
@@ -105,11 +108,14 @@ class ImageDrawer {
   }
 
   configureAWS() {
-    AWS.config.update({
-      accessKeyId: '<put_your_key_here>',
-      secretAccessKey: '<put_your_secret_key_here>',
-      region: '<put_your_region_here>'
-    })
+    return new Promise(
+      function(resolve, reject) {
+        chrome.storage.sync.get('ccS3', function(items) {
+          AWS.config.update(items.ccS3)
+          resolve()
+        })
+      }
+    )
   }
 
   loadImagesFromAWS(continuationToken, cb) {
