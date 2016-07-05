@@ -71,7 +71,14 @@ class ImageDrawer {
     const file = fileUploader.files[0]
     const date = new Date()
     const filename = `${this.awsPrefix}${date.getFullYear()}/${date.getFullMonth()}/${file.name}`
-    var params = {Key: filename, ContentType: file.type, Body: file};
+    var params = {Key: filename, ContentType: file.type, Body: file, Bucket: this.awsBucket, ACL: 'public-read'}
+    this.s3.upload(params, (err, data) => {
+      if(err) return
+
+      this.images = []
+      this.loadImagesFromAWS(null, this.onImagesLoaded.bind(this))
+
+    })
   }
 
   onImagesLoaded() {
@@ -140,9 +147,7 @@ class ImageDrawer {
   loadImagesFromAWS(continuationToken, cb) {
     const params = { Bucket: this.awsBucket, Prefix: this.awsPrefix }
     if (continuationToken) params.ContinuationToken = continuationToken
-    console.log(this.s3)
     this.s3.listObjectsV2(params, (err, data) => {
-      console.log(err)
       if (err) return
 
       this.images = this.images.concat(data.Contents)

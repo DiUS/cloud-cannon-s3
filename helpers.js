@@ -17,6 +17,6 @@ Element.prototype.removeClass = function(className) {
 }
 
 Date.prototype.getFullMonth = function() {
-  const month = this.getMonth()
-  return month.length === 1 ? '0'+month : month
+  const month = this.getMonth()+1
+  return month < 10 ? '0'+month : month
 }
