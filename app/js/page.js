@@ -1,3 +1,5 @@
+console.log('S3_PREFIX', S3_PREFIX)
+
 class ImageDrawer {
   constructor() {
     this.images = []
@@ -5,8 +7,6 @@ class ImageDrawer {
     this.awsBucket = 'dius-site'
     this.awsPrefix = 'images/'
     this.html = templateHTML
-    this.sitePrefix = 'https://s3-ap-southeast-2.amazonaws.com/dius-site'
-    this.imgixPrefix = 'http://dius.imgix.net'
     this.s3 = null
 
     document.addEventListener('click', this.onShowDrawerClick.bind(this))
@@ -75,7 +75,7 @@ class ImageDrawer {
 
   buildImgixURL(imgElement) {
     const imgixPath = imgElement.dataset.imagePath.replace(/^images\//, '')
-    return `${this.imgixPrefix}/${imgixPath}`
+    return `${IMGIX_PREFIX}/${imgixPath}`
   }
 
   filterValidImages() {
@@ -93,7 +93,7 @@ class ImageDrawer {
 
     this.imageListElem.innerHTML = truncatedImageList.map(image => {
       const imageElem = document.createElement('img')
-      imageElem.src = `${this.sitePrefix}/${image.Key}`
+      imageElem.src = `${S3_PREFIX}/${image.Key}`
       imageElem.className = 'magic-bar__image'
       imageElem.dataset.imagePath = image.Key
       const imgixURL = this.buildImgixURL(imageElem)

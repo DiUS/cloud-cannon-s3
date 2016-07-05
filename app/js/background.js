@@ -5,5 +5,6 @@ chrome.browserAction.onClicked.addListener(function(tab) {
   chrome.tabs.executeScript(null, {file: 'app/js/vendor/react-dom.min.js'})
   chrome.tabs.executeScript(null, {file: 'app/js/helpers.js'})
   chrome.tabs.executeScript(null, {file: 'app/js/template.js'})
+  chrome.tabs.executeScript(null, {file: 'app/js/constants.js'})
   chrome.tabs.executeScript(null, {file: 'app/js/page.js'})
 });
