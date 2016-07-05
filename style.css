@@ -55,3 +55,8 @@
   background: black;
   color: white;
 }
+
+.magic-bar__controls {
+  display: flex;
+  justify-content: space-between;
+}
