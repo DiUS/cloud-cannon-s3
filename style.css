@@ -7,7 +7,7 @@
   overflow-y: scroll;
   width: 400px;
   padding: 20px;
-  border-left: 1px solid #aaa;
+  border-right: 1px solid #eee;
   background-color: white;
   z-index: 1000;
   transition: transform 0.55s ease;
