@@ -1,4 +1,4 @@
-.magic-bar {
+.ccs3-image-drawer {
   box-sizing: border-box;
   position: absolute;
   left: 0;
@@ -10,10 +10,11 @@
   border-right: 1px solid #eee;
   background-color: white;
   z-index: 1000;
+  transform: translateX(-400px);
   transition: transform 0.55s ease;
 }
 
-.show-me {
+.ccs3-show-me {
   position: absolute;
   left: 0;
   top: 61px;
@@ -22,8 +23,8 @@
   width:300px
 }
 
-.magic-bar--closed {
-  transform: translateX(-400px);
+.ccs3-image-drawer--open {
+  transform: translateX(0);
 }
 
 .magic-bar__image-list {

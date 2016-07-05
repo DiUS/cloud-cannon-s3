@@ -1,6 +1,4 @@
-console.log('S3_PREFIX', S3_PREFIX)
-
-class ImageDrawer {
+class ImageDrawer2 {
   constructor() {
     this.images = []
     this.filteredImages = []
@@ -147,5 +145,5 @@ class ImageDrawer {
   }
 }
 
-const imageDrawer = new ImageDrawer()
+const imageDrawer2 = new ImageDrawer2()
 imageDrawer.init()

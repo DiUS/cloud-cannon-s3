@@ -1,11 +1,11 @@
 const templateHTML =
 `
-<a class="show-me" id="show-me" href="#">Images</a>
-<div class="magic-bar magic-bar--closed">
+<a class="ccs3-show-me" id="ccs3-show-me" href="#">Images</a>
+<div id="ccs3-image-drawer" class="ccs3-image-drawer">
   <div id="magic-bar__controls">
     <input type="file" id="file-upload" />
     <input type="submit" id="submit-upload" />
-    <a href="#" id="magic-bar-close">Close</a>
+    <a href="#" id="ccs3-image-drawer__close">Close</a>
   </div>
   <h4>Images</h4>
   <input type="text" id="search-filter" placeholder="Search...">
