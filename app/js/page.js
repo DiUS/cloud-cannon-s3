@@ -1,5 +1,3 @@
-
-
 class ImageDrawer {
   constructor() {
     this.images = []
