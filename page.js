@@ -1,24 +1,32 @@
+
+
 class ImageDrawer {
   constructor() {
     this.images = []
     this.filteredImages = []
     this.awsBucket = 'dius-site'
     this.awsPrefix = 'images/'
-    this.html = 
+    this.html =
       `<a class="show-me" id="show-me" href="#">Images</a>
        <div class="magic-bar magic-bar--closed">
-         <div><a href="#" id="magic-bar-close">Close</a></div>
+         <div id="magic-bar__controls">
+          <input type="file" id="file-upload" />
+          <input type="submit" id="submit-upload" />
+          <a href="#" id="magic-bar-close">Close</a>
+         </div>
          <h4>Images</h4>
          <input type="text" id="search-filter" placeholder="Search...">
          <div id="image-list" class="magic-bar__image-list"></div>
       </div>`
     this.sitePrefix = 'https://s3-ap-southeast-2.amazonaws.com/dius-site'
     this.imgixPrefix = 'http://dius.imgix.net'
+    this.s3 = null
 
     document.addEventListener('click', this.onShowDrawerClick.bind(this))
     document.addEventListener('click', this.onCloseDrawerClick.bind(this))
     document.addEventListener('keyup', this.onSearchKeyUp.bind(this))
     document.addEventListener('click', this.onImageClick.bind(this))
+    document.addEventListener('click', this.onUploadSubmit.bind(this))
   }
 
   onShowDrawerClick(e) {
@@ -35,7 +43,7 @@ class ImageDrawer {
 
   onSearchKeyUp(e) {
     if (e.target.id !== 'search-filter') return false
-    
+
     const filter = e.target.value
     this.renderImages(this.images.filter(image => {
       return image.Key.contains(filter)
@@ -47,13 +55,30 @@ class ImageDrawer {
     e.preventDefault()
 
     const scriptElem = document.createElement('script')
-    scriptElem.textContent = 
+    scriptElem.textContent =
       `(function () {
          let iframeCKEDITOR = document.getElementById('editor-iframe').contentWindow.CKEDITOR
          iframeCKEDITOR.instances['markdown-editor-wrapper'].insertHtml('<img src="${this.buildImgixURL(e.target)}">')
        })()`
     this.drawerElem.appendChild(scriptElem)
     scriptElem.parentNode.removeChild(scriptElem)
+  }
+
+  onUploadSubmit(e) {
+    if (e.target.id !== 'submit-upload') return false
+    e.preventDefault()
+    const fileUploader = document.querySelector('#file-upload')
+    const file = fileUploader.files[0]
+    const date = new Date()
+    const filename = `${this.awsPrefix}${date.getFullYear()}/${date.getFullMonth()}/${file.name}`
+    var params = {Key: filename, ContentType: file.type, Body: file, Bucket: this.awsBucket, ACL: 'public-read'}
+    this.s3.upload(params, (err, data) => {
+      if(err) return
+
+      this.images = []
+      this.loadImagesFromAWS(null, this.onImagesLoaded.bind(this))
+
+    })
   }
 
   onImagesLoaded() {
@@ -78,7 +103,7 @@ class ImageDrawer {
     let maxCount = 10
     if (filteredImages.length < maxCount) maxCount = filteredImages.length
     const truncatedImageList = filteredImages.slice(0, maxCount)
-    
+
     this.imageListElem.innerHTML = truncatedImageList.map(image => {
       const imageElem = document.createElement('img')
       imageElem.src = `${this.sitePrefix}/${image.Key}`
@@ -90,11 +115,11 @@ class ImageDrawer {
   }
 
   init() {
-    var that = this
     this.render()
     this.configureAWS()
-      .then(function() {
-        that.loadImagesFromAWS(null, that.onImagesLoaded.bind(that))
+      .then(() => {
+        this.s3 = new AWS.S3()
+        this.loadImagesFromAWS(null, this.onImagesLoaded.bind(this))
       })
   }
 
@@ -120,11 +145,9 @@ class ImageDrawer {
   }
 
   loadImagesFromAWS(continuationToken, cb) {
-    const s3 = new AWS.S3()
     const params = { Bucket: this.awsBucket, Prefix: this.awsPrefix }
     if (continuationToken) params.ContinuationToken = continuationToken
-
-    s3.listObjectsV2(params, (err, data) => {
+    this.s3.listObjectsV2(params, (err, data) => {
       if (err) return
 
       this.images = this.images.concat(data.Contents)

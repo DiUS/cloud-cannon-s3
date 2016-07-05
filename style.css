@@ -10,16 +10,16 @@
   border-left: 1px solid #aaa;
   background-color: white;
   z-index: 1000;
-
-  transition: transform 0.55s ease
+  transition: transform 0.55s ease;
 }
 
 .show-me {
   position: absolute;
   left: 0;
-  top: 20%;
+  top: 61px;
   background: pink;
   z-index: 100;
+  width:300px
 }
 
 .magic-bar--closed {
@@ -54,4 +54,9 @@
   left: 0;
   background: black;
   color: white;
+}
+
+.magic-bar__controls {
+  display: flex;
+  justify-content: space-between;
 }
