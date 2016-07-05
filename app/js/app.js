@@ -19,6 +19,5 @@ class App {
 const app = new App()
 app.render()
 
-
 const imageDrawer = new ImageDrawer()
 const imageList = new ImageList()

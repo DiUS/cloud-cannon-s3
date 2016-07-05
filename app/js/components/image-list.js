@@ -6,6 +6,8 @@ class ImageList {
     const s3 = new S3()
     s3.configure()
       .then(s3.loadImages.bind(s3))
-      // .then(render)
+      .then(function(data) {
+        console.log(data)
+      })
   }
 }

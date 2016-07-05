@@ -5,20 +5,26 @@ class S3 {
   }
 
   configure() {
-    const that = this
     return new Promise(
-      function(resolve, reject) {
+      (resolve, reject) => {
         chrome.storage.sync.get('ccS3', items => {
           AWS.config.update(items.ccS3)
-          that.s3 = new AWS.S3()  
+          this.s3 = new AWS.S3()  
           resolve()
         })
       }
     )
   }
 
-  loadImages(images = []) {
-    console.log('this', this)
+  loadImages() {
+    return new Promise(
+      (resolve, reject) => {
+        this.buildImageList([], {resolve, reject})
+      }
+    )    
+  }
+
+  buildImageList(images, deferred) {
     const params = { Bucket: S3_BUCKET, Prefix: S3_BUCKET_PREFIX }
     if (this.continuationToken) params.ContinuationToken = this.continuationToken
 
@@ -26,10 +32,13 @@ class S3 {
       if (err) return
 
       images = images.concat(data.Contents)
-      console.log('data', data)
+      
       if (data.IsTruncated) {
         this.continuationToken = data.NextContinuationToken
-        this.loadImagesFromS3(images)
+        this.buildImageList(images, deferred)
+      } else {
+        this.continuationToken = null
+        deferred.resolve(images)
       }
     })
   }
