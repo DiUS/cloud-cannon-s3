@@ -1,4 +1,4 @@
-class S3 {
+class S3Service {
   constructor() {
     this.s3 = null
     this.continuationToken = null

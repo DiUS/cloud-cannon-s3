@@ -1,25 +1,10 @@
-class App {
-  constructor() {
-    this.containerId = 'cloud-cannon-s3'
-  }
+const App = { s3Service: new S3Service() }
 
-  createContainer() {
-    const extensionContainer = document.createElement('div')
-    extensionContainer.id = this.containerId
-    return extensionContainer
-  }
-
-  render() {
-    const extensionContainer = this.createContainer()
-    document.querySelector('body').appendChild(extensionContainer)
-    extensionContainer.innerHTML = templateHTML
-  }
-}
-
-const app = new App()
-app.render()
-
-const imageDrawer = new ImageDrawer()
-const imageList = new ImageList()
-const search = new Search(imageList)
-const uploader = new Uploader(imageList)
+App.s3Service.configure()
+  .then(_ => {
+    new Container()
+    const imageDrawer = new ImageDrawer()
+    const imageList = new ImageList()
+    const search = new Search(imageList)
+    const uploader = new Uploader(imageList)
+  })

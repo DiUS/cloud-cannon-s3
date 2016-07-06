@@ -7,17 +7,15 @@ class ImageList {
     this.fetchImages()
   }
 
+  fetchImages() {
+    App.s3Service.loadImages()
+      .then(this.onImagesLoaded.bind(this))
+  }
+
   onImagesLoaded(images) {
     this.images = images
     this.images = this.filterValidImages()
     this.render(this.images)
-  }
-
-  fetchImages() {
-    const s3 = new S3()
-    s3.configure()
-      .then(s3.loadImages.bind(s3))
-      .then(this.onImagesLoaded.bind(this))
   }
 
   filterValidImages() {
