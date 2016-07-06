@@ -4,7 +4,7 @@ class ImageList {
     this.images = []
     this.continuationToken = null
     this.maxCount = 10
-    
+
     const s3 = new S3()
     s3.configure()
       .then(s3.loadImages.bind(s3))
@@ -25,23 +25,11 @@ class ImageList {
     }).reverse()
   }
 
-  buildImgixUrl(imageKey) {
-    return `${IMGIX_PREFIX_URL}/${imageKey}`.replace(/images\//, '')
-  }
-
-  buildImageElement(image) {
-    return `
-      <div class="magic-bar__image-wrapper">
-        <img src="${S3_PREFIX_URL}/${image.Key}" class="magic-bar__image" data-path="${this.buildImgixUrl(image.Key)}">
-      </div>
-    `
-  }
-
   render() {
     const truncatedImageList = this.images.slice(0, this.maxCount)
 
     this.imageListElem.innerHTML = truncatedImageList.map(image => {
-      return this.buildImageElement(image)
+      return new Image(image).render()
     }).join('')
   }
 }
