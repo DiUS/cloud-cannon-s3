@@ -6,12 +6,21 @@ class Search {
     document.addEventListener('keyup', this.onSearchKeyUp.bind(this))
   }
 
+  buildRegex(searchString) {
+    const searchTerms = searchString.split(' ')
+    const regexString = searchTerms.map(searchTerm => {
+      return `(?=.*${searchTerm})`
+    }).join('')
+    return new RegExp(regexString, 'i')
+  }
+
   onSearchKeyUp(e) {
     if (e.target.id !== this.searchElem.id) return false
+
     const images = this.imageList.images
-    const filter = e.target.value
+    const regex = this.buildRegex(e.target.value)
     this.imageList.render(images.filter(image => {
-      return image.Key.contains(filter)
+      return image.Key.match(regex)
     }))
   }
 
