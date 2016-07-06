@@ -20,11 +20,28 @@ class ImageList {
   }
 
   filterValidImages() {
-    return this.images.filter(image => {
+    let images = this.images.filter(image => {
       if (!image.Key.contains('.DS_Store') && !image.Key.match(/\/$/)) {
         return true
       }
-    }).reverse()
+    })
+    return this.sortImagesByDate(images)
+  }
+
+  sortImagesByDate(images) {
+    return images.slice(0).sort(this.customDateSort)
+  }
+
+  customDateSort(a, b) {
+    if (a.LastModified > b.LastModified) {
+      return -1
+    }
+    else if (a.LastModified < b.LastModified) {
+      return 1
+    }
+    else {
+      return 0
+    }
   }
 
   render(images) {
