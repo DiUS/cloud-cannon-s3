@@ -16,6 +16,7 @@ class ImageList {
     this.images = images
     this.images = this.filterValidImages()
     this.render(this.images)
+    this.setUpCopyImageButton()
   }
 
   filterValidImages() {
@@ -32,5 +33,20 @@ class ImageList {
     this.imageListElem.innerHTML = truncatedImageList.map(image => {
       return new Image(image).render()
     }).join('')
+  }
+
+  setUpCopyImageButton() {
+    const clipboard = new Clipboard('.btn-copy-image', {
+      text: function(trigger) {
+        return trigger.getAttribute('data-clipboard-text');
+      }
+    })
+
+    clipboard.on('success', e => {
+      e.trigger.addClass('active')
+      window.setTimeout(function() {
+        e.trigger.removeClass('active')
+      }, 750)
+    })
   }
 }
