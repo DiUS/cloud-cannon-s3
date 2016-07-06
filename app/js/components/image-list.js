@@ -14,7 +14,7 @@ class ImageList {
   onImagesLoaded(images) {
     this.images = images
     this.images = this.filterValidImages()
-    this.render()
+    this.render(this.images)
   }
 
   filterValidImages() {
@@ -25,8 +25,8 @@ class ImageList {
     }).reverse()
   }
 
-  render() {
-    const truncatedImageList = this.images.slice(0, this.maxCount)
+  render(images) {
+    const truncatedImageList = images.slice(0, this.maxCount)
 
     this.imageListElem.innerHTML = truncatedImageList.map(image => {
       return new Image(image).render()

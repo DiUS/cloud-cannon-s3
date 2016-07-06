@@ -21,3 +21,4 @@ app.render()
 
 const imageDrawer = new ImageDrawer()
 const imageList = new ImageList()
+const search = new Search(imageList)

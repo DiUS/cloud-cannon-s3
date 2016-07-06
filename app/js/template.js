@@ -8,7 +8,7 @@ const templateHTML =
     <a href="#" id="ccs3-image-drawer__close">Close</a>
   </div>
   <h4>Images</h4>
-  <input type="text" id="search-filter" placeholder="Search...">
+  <input type="text" id="ccs3-search-filter" placeholder="Search...">
   <div id="image-list" class="magic-bar__image-list"></div>
 </div>
 `
