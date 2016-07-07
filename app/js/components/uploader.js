@@ -2,11 +2,12 @@ class Uploader {
   constructor(imageList) {
     this.imageList = imageList
     this.fileElem = document.querySelector('#file-upload')
+    this.submitUploadElem = document.querySelector('#submit-upload')
     document.addEventListener('click', this.onUploadSubmit.bind(this))
   }
 
   onUploadSubmit(e) {
-    if (e.target.id !== 'submit-upload') return false
+    if (e.target.id !== this.submitUploadElem.id) return false
 
     const promises = [];
     for (let i = 0; i < this.fileElem.files.length; i++) {
@@ -16,11 +17,17 @@ class Uploader {
       promises.push(App.s3Service.upload(file, key))
     }
 
+    this.submitUploadElem.addClass('loading')
+
     Promise.all(promises)
       .then(this.onUploadSuccess.bind(this))
   }
 
   onUploadSuccess() {
+    const statusService = new StatusService()
+    statusService.showSuccess('Upload successful!')
+    this.fileElem.value = ''
+    this.submitUploadElem.removeClass('loading')
     this.imageList.fetchAssets()
   }
 
@@ -35,6 +42,6 @@ class Uploader {
       bucket = S3_PDF_PREFIX
     }
 
-    return `${bucket}/${date.getFullYear()}/${date.getFullMonth()}/${file.name}`
+    return `${bucket}/${date.getFullYear()}/${date.getFullMonth()}/${date.getDate()}${file.name}`
   }
 }

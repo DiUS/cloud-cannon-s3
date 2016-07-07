@@ -29,10 +29,13 @@
   position: absolute;
   top: 0;
   width: 100%;
-  padding: 10px;
+  padding: 10px 20px;
   background-color: #eee;
   transform: translateY(-50px);
   transition: transform .6s;
+  color: white;
+  font-size: 1.2em;
+  opacity: 0.85;
 }
 
 .ccs3-status--active {
@@ -40,11 +43,11 @@
 }
 
 .ccs3-status--success {
-  background-color: green;
+  background-color: #a2b842;
 }
 
 .ccs3-status--error {
-  background-color: red;
+  background-color: #c12834;
 }
 
 .ccs3-magic-bar__uploader {
@@ -52,6 +55,10 @@
   padding: 7px;
   height: 27px;
   line-height: 27px;
+}
+
+.ccs3-magic-bar__uploader input {
+  width: 70%;
 }
 
 .ccs3-pull-right {
@@ -78,12 +85,26 @@
 }
 
 .ccs3-btn--icon:focus {
-  outline: none; 
+  outline: none;
 }
 
 .ccs3-btn--icon img {
   height: 20px;
   width: 20px;
+}
+
+.ccs3-spinner {
+  display:none;
+}
+
+.loading .ccs3-spinner{
+  width: 15px;
+  display: inline;
+  padding-left: 5px;
+  padding-top: 10;
+  position: relative;
+  top: 3px;
+  color: white;
 }
 
 .ccs3-asset-drawer__close:hover {

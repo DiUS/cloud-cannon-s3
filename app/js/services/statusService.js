@@ -19,7 +19,7 @@ class StatusService {
     this.statusElem.addClass('ccs3-status--active')
     window.setTimeout(_ => {
       this.statusElem.removeClass('ccs3-status--active')
-    }, 750)
+    }, 1500)
   }
 
   showError(message) {
