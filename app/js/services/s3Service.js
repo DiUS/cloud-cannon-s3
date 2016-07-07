@@ -37,7 +37,7 @@ class S3Service {
   }
 
   buildImageList(images, deferred) {
-    const params = { Bucket: S3_BUCKET, Prefix: S3_IMAGES_PREFIX }
+    const params = { Bucket: S3_BUCKET }
     if (this.continuationToken) params.ContinuationToken = this.continuationToken
 
     this.s3.listObjectsV2(params, (err, data) => {

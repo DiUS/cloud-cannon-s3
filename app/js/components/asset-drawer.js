@@ -1,7 +1,7 @@
-class ImageDrawer {
+class AssetDrawer {
   constructor() {
-    this.drawerElem = document.querySelector('#ccs3-image-drawer')
-    this.closeElemId = 'ccs3-image-drawer__close'
+    this.drawerElem = document.querySelector('#ccs3-asset-drawer')
+    this.closeElemId = 'ccs3-asset-drawer__close'
     this.openElemId = 'ccs3-show-me'
 
     document.addEventListener('click', this.onShowDrawerClick.bind(this))
@@ -11,12 +11,12 @@ class ImageDrawer {
   onShowDrawerClick(e) {
     if (e.target.id !== this.openElemId) return false
     e.preventDefault()
-    this.drawerElem.addClass('ccs3-image-drawer--open')
+    this.drawerElem.addClass('ccs3-asset-drawer--open')
   }
 
   onCloseDrawerClick(e) {
     if (e.target.id !== this.closeElemId) return false
     e.preventDefault()
-    this.drawerElem.removeClass('ccs3-image-drawer--open')
+    this.drawerElem.removeClass('ccs3-asset-drawer--open')
   }
 }

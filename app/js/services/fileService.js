@@ -1,4 +1,6 @@
 class FileService {
+  constructor() {}
+  
   fileExtension(file) {
     return `.${file.split('.').pop()}`
   }

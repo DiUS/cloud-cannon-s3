@@ -16,9 +16,9 @@ class Image {
 
   buildImageElement() {
     return `
-      <div class="magic-bar__image-wrapper">
+      <div class="magic-bar__asset-wrapper">
         <img src="${this.s3Url}" class="magic-bar__image" data-path="${this.imgixUrl}">
-        <button data-ccs3-tooltip="success" class="btn-copy-image tooltip-bottom" data-clipboard-text="${this.imgixUrl}">
+        <button data-ccs3-tooltip="success" class="btn-copy-asset tooltip-bottom" data-clipboard-text="${this.imgixUrl}">
           Copy to clipboard
         </button>
       </div>
