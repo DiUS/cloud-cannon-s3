@@ -1,6 +1,6 @@
 .ccs3-image-drawer {
   box-sizing: border-box;
-  position: absolute;
+  position: fixed;
   left: 0;
   top: 0;
   bottom: 0;
