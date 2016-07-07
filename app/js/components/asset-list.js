@@ -57,7 +57,7 @@ class AssetList {
   }
 
   setUpCopyAssetButton() {
-    const clipboard = new Clipboard('.btn-copy-image', {
+    const clipboard = new Clipboard('.btn-copy-asset', {
       text: function(trigger) {
         return trigger.getAttribute('data-clipboard-text');
       }

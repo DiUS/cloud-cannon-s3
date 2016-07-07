@@ -39,11 +39,6 @@ class Image {
     scriptElem.parentNode.removeChild(scriptElem)
   }
 
-  onCopyImageUrl(e) {
-    if (e.target.dataset.clipboardText !== this.imgixUrl) return false
-    document.execCommand('copy')
-  }
-
   render() {
     return this.buildImageElement()
   }

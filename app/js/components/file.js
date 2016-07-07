@@ -14,7 +14,9 @@ class File {
         <div class="pdf-placeholder">
           ${this.buildS3Url().split('/').pop()}
         </div>
-
+        <button data-ccs3-tooltip="success" class="btn-copy-asset tooltip-bottom" data-clipboard-text="${this.s3Url}">
+          Copy to clipboard
+        </button>
       </div>
     `
   }
