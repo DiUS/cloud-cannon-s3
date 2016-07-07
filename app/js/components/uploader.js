@@ -9,23 +9,24 @@ class Uploader {
   onUploadSubmit(e) {
     if (e.target.id !== this.submitUploadElem.id) return false
 
-    const promises = [];
+    const promises = []
+    this.submitUploadElem.addClass('loading')
+    
     for (let i = 0; i < this.fileElem.files.length; i++) {
-
       const file = this.fileElem.files[i]
       let key = this.buildS3Key(file)
 
       if(this.validateFileUpload(key)) {
         promises.push(App.s3Service.upload(file, key))
-        this.submitUploadElem.addClass('loading')
-
-        Promise.all(promises)
-          .then(this.onUploadSuccess.bind(this))
       } else {
         const statusService = new StatusService()
         statusService.showError(`${file.name} exist!`)
+        return false
       }
     }
+
+    Promise.all(promises)
+      .then(this.onUploadSuccess.bind(this))
   }
 
   onUploadSuccess() {
