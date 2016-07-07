@@ -45,14 +45,19 @@ class AssetList {
 
   render(assets) {
     const truncatedAssetList = assets.slice(0, this.maxCount)
+    const fileService = new FileService()
 
     this.assetListElem.innerHTML = truncatedAssetList.map(asset => {
-      return new Image(asset).render()
+      if (fileService.isImage(asset.Key)) {
+        return new Image(asset).render()  
+      } else if (fileService.isPdf(asset.Key)) {
+        console.log('pdf', asset.Key)
+      }
     }).join('')
   }
 
   setUpCopyAssetButton() {
-    const clipboard = new Clipboard('.btn-copy-asset', {
+    const clipboard = new Clipboard('.btn-copy-image', {
       text: function(trigger) {
         return trigger.getAttribute('data-clipboard-text');
       }
