@@ -24,9 +24,9 @@ class S3Service {
     )
   }
 
-  upload(file, pathname) {
+  upload(file, key) {
     return new Promise((resolve,reject) => {
-      var params = {Key: `${pathname}${file.name}`, ContentType: file.type, Body: file, Bucket: S3_BUCKET, ACL: 'public-read'}
+      var params = {Key: key, ContentType: file.type, Body: file, Bucket: S3_BUCKET, ACL: 'public-read'}
 
       this.s3.upload(params, (err, data) => {
         if(err) return
@@ -37,7 +37,7 @@ class S3Service {
   }
 
   buildImageList(images, deferred) {
-    const params = { Bucket: S3_BUCKET, Prefix: S3_BUCKET_PREFIX }
+    const params = { Bucket: S3_BUCKET, Prefix: S3_IMAGES_PREFIX }
     if (this.continuationToken) params.ContinuationToken = this.continuationToken
 
     this.s3.listObjectsV2(params, (err, data) => {
