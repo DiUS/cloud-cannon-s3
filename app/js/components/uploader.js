@@ -21,13 +21,13 @@ class Uploader {
   }
 
   onUploadSuccess() {
-    this.imageList.fetchImages()
+    this.imageList.fetchAssets()
   }
 
   buildS3Key(file) {
     const fileService = new FileService()
     const date = new Date()
-    let bucket
+    let bucket = "lost_n_found"
 
     if (fileService.isImage(file.name)) {
       bucket = S3_IMAGES_PREFIX
