@@ -1,6 +1,5 @@
 {
   "manifest_version": 2,
-
   "name": "DiUS Cloud Cannon Helper",
   "description": "Designed to make integrations more palatable in Cloud Cannon",
   "version": "1.0",
@@ -26,6 +25,7 @@
       "./app/js/template.js",
       "./app/js/services/s3Service.js",
       "./app/js/services/fileService.js",
+      "./app/js/services/statusService.js",
       "./app/js/components/container.js",
       "./app/js/components/asset-drawer.js",
       "./app/js/components/asset-list.js",

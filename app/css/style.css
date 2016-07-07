@@ -25,6 +25,28 @@
   top: 1px;
 }
 
+.ccs3-status {
+  position: absolute;
+  top: 0;
+  width: 100%;
+  padding: 10px;
+  background-color: #eee;
+  transform: translateY(-50px);
+  transition: transform .6s;
+}
+
+.ccs3-status--active {
+  transform: translateY(0);
+}
+
+.ccs3-status--success {
+  background-color: green;
+}
+
+.ccs3-status--error {
+  background-color: red;
+}
+
 .ccs3-magic-bar__uploader {
   border: 1px solid #ddd;
   padding: 7px;
