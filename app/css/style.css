@@ -6,12 +6,70 @@
   bottom: 0;
   overflow-y: scroll;
   width: 400px;
-  padding: 20px;
   border-right: 1px solid #eee;
   background-color: white;
   z-index: 1000;
   transform: translateX(-400px);
   transition: transform 0.55s ease;
+}
+
+.ccs3-container {
+  padding: 20px;
+}
+
+.ccs3-asset-drawer__close {
+  font-size: 48px;
+  line-height: 48px;
+  position: absolute;
+  right: 10px;
+  top: 1px;
+}
+
+.ccs3-magic-bar__uploader {
+  border: 1px solid #ddd;
+  padding: 7px;
+  height: 27px;
+  line-height: 27px;
+}
+
+.ccs3-pull-right {
+  float: right;
+}
+
+.ccs3-btn {
+  background: #2e7de1;
+  border: none;
+  color: white;
+  border-radius: 4px;
+  padding: 3px 10px;
+}
+
+.ccs3-btn--icon {
+  border-radius: 0;
+  border-top-left-radius: 4px;
+  cursor: pointer;
+  background: white;
+  padding: 5px 5px 0 5px;
+  position: absolute;
+  bottom: 0;
+  right: 0;
+}
+
+.ccs3-btn--icon:focus {
+  outline: none; 
+}
+
+.ccs3-btn--icon img {
+  height: 20px;
+  width: 20px;
+}
+
+.ccs3-asset-drawer__close:hover {
+  text-decoration: none;
+}
+
+.ccs3-asset-drawer__close, .ccs3-asset-drawer__close:visited {
+  color: #888;
 }
 
 .ccs3-show-me {

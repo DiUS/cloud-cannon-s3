@@ -1,7 +1,7 @@
 class AssetDrawer {
   constructor() {
     this.drawerElem = document.querySelector('#ccs3-asset-drawer')
-    this.closeElemId = 'ccs3-asset-drawer__close'
+    this.closeElemId = 'ccs3-close'
     this.openElemId = 'ccs3-show-me'
 
     document.addEventListener('click', this.onShowDrawerClick.bind(this))

@@ -1,4 +1,5 @@
 chrome.browserAction.onClicked.addListener(function(tab) {
+  chrome.tabs.insertCSS(null, {file: 'app/css/font-awesome.min.css'})
   chrome.tabs.insertCSS(null, {file: 'app/css/style.css'})
   chrome.tabs.insertCSS(null, {file: 'app/css/tooltip.css'})
   chrome.tabs.executeScript(null, {file: 'app/js/vendor/aws-sdk-2.4.0.min.js'})

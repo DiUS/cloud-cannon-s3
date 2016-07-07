@@ -18,8 +18,8 @@ class Image {
     return `
       <div class="magic-bar__asset-wrapper">
         <img src="${this.s3Url}" class="magic-bar__image" data-path="${this.imgixUrl}">
-        <button data-ccs3-tooltip="success" class="btn-copy-asset tooltip-bottom" data-clipboard-text="${this.imgixUrl}">
-          Copy to clipboard
+        <button data-ccs3-tooltip="success" class="ccs3-btn ccs3-btn--icon btn-copy-asset tooltip-bottom" data-clipboard-text="${this.imgixUrl}">
+          <img src="${S3_PREFIX_URL}/images/assets/clipboard.svg" />
         </button>
       </div>
     `
