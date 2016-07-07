@@ -20,10 +20,9 @@ class ImageList {
   }
 
   filterValidImages() {
+    const fileService = new FileService()
     let images = this.images.filter(image => {
-      if (!image.Key.contains('.DS_Store') && !image.Key.match(/\/$/)) {
-        return true
-      }
+      if (fileService.isValidFile(image.Key)) return true
     })
     return this.sortImagesByDate(images)
   }

@@ -7,6 +7,7 @@ chrome.browserAction.onClicked.addListener(function(tab) {
   chrome.tabs.executeScript(null, {file: 'app/js/constants.js'})
   chrome.tabs.executeScript(null, {file: 'app/js/template.js'})
   chrome.tabs.executeScript(null, {file: 'app/js/services/s3Service.js'})
+  chrome.tabs.executeScript(null, {file: 'app/js/services/fileService.js'})
   chrome.tabs.executeScript(null, {file: 'app/js/components/container.js'})
   chrome.tabs.executeScript(null, {file: 'app/js/components/image-drawer.js'})
   chrome.tabs.executeScript(null, {file: 'app/js/components/image-list.js'})

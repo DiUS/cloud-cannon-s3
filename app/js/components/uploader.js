@@ -25,17 +25,16 @@ class Uploader {
   }
 
   buildS3Key(file) {
-    let bucket = ""
-    if(file.type.contains(ACCEPTED_IMAGES))
-      bucket = S3_IMAGES_PREFIX
-    else if(file.type.contains(ACCEPTED_PDF))
-      bucket = S3_PDF_PREFIX
-
+    const fileService = new FileService()
     const date = new Date()
+    let bucket
+
+    if (fileService.isImage(file.name)) {
+      bucket = S3_IMAGES_PREFIX
+    } else if (fileService.isPdf(file.name)) {
+      bucket = S3_PDF_PREFIX
+    }
+
     return `${bucket}/${date.getFullYear()}/${date.getFullMonth()}/${file.name}`
   }
-
-
-
-
 }

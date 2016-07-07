@@ -3,6 +3,10 @@ String.prototype.contains = function(matcher) {
   return regex.test(this)
 }
 
+Array.prototype.contains = function(item) {
+  return this.indexOf(item) === -1 ? false : true
+}
+
 Element.prototype.addClass = function(className) {
   const currentClasses = this.className
   this.className = `${currentClasses} ${className}`.trim()
