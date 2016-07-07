@@ -12,12 +12,31 @@
   "browser_action": {
     "default_icon": "icon.png" 
   },
-  "background": {
-    "scripts": ["./app/js/background.js"],
-    "persistent": false
-  },
+  "content_scripts": [{
+    "matches": ["https://app.cloudcannon.com/editor*"],
+    "css": [
+      "./app/css/style.css",
+      "./app/css/tooltip.css"
+    ],
+    "js": [
+      "./app/js/vendor/aws-sdk-2.4.0.min.js",
+      "./app/js/vendor/clipboard.min.js",
+      "./app/js/helpers.js",
+      "./app/js/constants.js",
+      "./app/js/template.js",
+      "./app/js/services/s3Service.js",
+      "./app/js/services/fileService.js",
+      "./app/js/components/container.js",
+      "./app/js/components/asset-drawer.js",
+      "./app/js/components/asset-list.js",
+      "./app/js/components/image.js",
+      "./app/js/components/file.js",
+      "./app/js/components/search.js",
+      "./app/js/components/uploader.js",
+      "./app/js/app.js"
+    ]
+  }],
   "permissions": [
-    "https://app.cloudcannon.com/*",
     "storage"
   ],
   "options_ui": {

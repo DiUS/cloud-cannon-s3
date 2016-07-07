@@ -73,12 +73,19 @@
 }
 
 .ccs3-show-me {
+  background-color: #21366D;
+  color: white;
   position: absolute;
-  left: 0;
-  top: 61px;
-  background: pink;
   z-index: 100;
-  width:300px
+  bottom: 0;
+  left: 0;
+  top: auto;
+  width: 100%;
+  max-width: 300px;
+  display: flex;
+  align-items: center;
+  padding: 10px 30px;
+  box-sizing: border-box;
 }
 
 .ccs3-asset-drawer--open {

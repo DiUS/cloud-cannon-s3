@@ -1,6 +1,6 @@
 const templateHTML =
 `
-<a class="ccs3-show-me" id="ccs3-show-me" href="#">Assets</a>
+<a class="ccs3-show-me" id="ccs3-show-me" href="#">DiUS Assets ></a>
 <div id="ccs3-asset-drawer" class="ccs3-asset-drawer">
   
   <a href="#" id="ccs3-close" class="ccs3-asset-drawer__close">&times;</a>
