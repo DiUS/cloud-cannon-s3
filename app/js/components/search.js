@@ -1,7 +1,7 @@
 class Search {
-  constructor(imageList) {
+  constructor(assetList) {
     this.searchElem = document.querySelector('#ccs3-search-filter')
-    this.imageList = imageList
+    this.assetList = assetList
 
     document.addEventListener('keyup', this.onSearchKeyUp.bind(this))
   }
@@ -17,10 +17,10 @@ class Search {
   onSearchKeyUp(e) {
     if (e.target.id !== this.searchElem.id) return false
 
-    const images = this.imageList.images
+    const assets = this.assetList.assets
     const regex = this.buildRegex(e.target.value)
-    this.imageList.render(images.filter(image => {
-      return image.Key.match(regex)
+    this.assetList.render(assets.filter(asset => {
+      return asset.Key.match(regex)
     }))
   }
 

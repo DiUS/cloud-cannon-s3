@@ -12,6 +12,7 @@ chrome.browserAction.onClicked.addListener(function(tab) {
   chrome.tabs.executeScript(null, {file: 'app/js/components/asset-drawer.js'})
   chrome.tabs.executeScript(null, {file: 'app/js/components/asset-list.js'})
   chrome.tabs.executeScript(null, {file: 'app/js/components/image.js'})
+  chrome.tabs.executeScript(null, {file: 'app/js/components/file.js'})
   chrome.tabs.executeScript(null, {file: 'app/js/components/search.js'})
   chrome.tabs.executeScript(null, {file: 'app/js/components/uploader.js'})
   chrome.tabs.executeScript(null, {file: 'app/js/app.js'})

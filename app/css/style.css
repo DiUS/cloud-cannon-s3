@@ -61,3 +61,8 @@
   display: flex;
   justify-content: space-between;
 }
+
+.pdf-placeholder{
+  padding: 20px 10px;
+  background-color: #ccc;
+}
