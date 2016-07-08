@@ -42,8 +42,8 @@ class S3Service {
 
     this.s3.listObjectsV2(params, (err, data) => {
       if (err) {
-        const s3StatusService = new S3StatusService()
-        s3StatusService.showConnectionError(err.code)
+        const s3StatusService = new S3StatusService(err)
+        s3StatusService.showConnectionError()
         return
       }
 
