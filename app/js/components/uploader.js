@@ -11,7 +11,7 @@ class Uploader {
 
     const promises = []
     this.submitUploadElem.addClass('loading')
-    
+
     for (let i = 0; i < this.fileElem.files.length; i++) {
       const file = this.fileElem.files[i]
       let key = this.buildS3Key(file)
@@ -48,7 +48,7 @@ class Uploader {
       bucket = S3_PDF_PREFIX
     }
 
-    return `${bucket}/${date.getFullYear()}/${date.getFullMonth()}/${date.getDate()}${file.name}`
+    return `${bucket}/${date.getFullYear()}/${date.getFullMonth()}/${file.name}`
   }
 
   validateFileUpload(key) {
