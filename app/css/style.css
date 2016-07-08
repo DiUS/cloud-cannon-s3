@@ -25,7 +25,7 @@
   top: 1px;
 }
 
-.ccs3-status {
+.ccs3-upload-status {
   position: absolute;
   top: 0;
   width: 100%;
@@ -38,15 +38,15 @@
   opacity: 0.85;
 }
 
-.ccs3-status--active {
+.ccs3-upload-status--active {
   transform: translateY(0);
 }
 
-.ccs3-status--success {
+.ccs3-upload-status--success {
   background-color: #a2b842;
 }
 
-.ccs3-status--error {
+.ccs3-upload-status--error {
   background-color: #c12834;
 }
 
@@ -129,6 +129,11 @@
   align-items: center;
   padding: 10px 30px;
   box-sizing: border-box;
+}
+
+#ccs3-s3Status {
+  background-color: #C12834;
+  z-index: 101;
 }
 
 .ccs3-asset-drawer--open {
