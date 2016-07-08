@@ -25,13 +25,13 @@ class UploaderStatusService {
   showUploadError(message) {
     this.statusElem.addClass('ccs3-upload-status--error')
     this.statusElem.innerHTML = message
-    this.showStatus()
+    this.showUploadStatus()
   }
 
   showUploadSuccess(message) {
     this.statusElem.addClass('ccs3-upload-status--success')
     this.statusElem.innerHTML = message
-    this.showStatus()
+    this.showUploadStatus()
   }
 
 }

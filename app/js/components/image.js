@@ -28,15 +28,30 @@ class Image {
   onImageClick(e) {
     if (e.target.dataset.path !== this.imgixUrl) return false
     e.preventDefault()
-
     const scriptElem = document.createElement('script')
-    scriptElem.textContent =
-      `(function () {
-         let iframeCKEDITOR = document.getElementById('editor-iframe').contentWindow.CKEDITOR
-         iframeCKEDITOR.instances['markdown-editor-wrapper'].insertHtml('<img src="${this.imgixUrl}">')
-       })()`
+    scriptElem.textContent = this.getScriptElem()
+
     document.body.appendChild(scriptElem)
     scriptElem.parentNode.removeChild(scriptElem)
+  }
+
+  getScriptElem () {
+    return `(function () {
+       let iframeCKEDITOR = document.getElementById('editor-iframe').contentWindow.CKEDITOR
+       let markdownEditor = iframeCKEDITOR.instances['markdown-editor-wrapper']
+       if(markdownEditor)
+         markdownEditor.insertHtml('<img src="${this.imgixUrl}">')
+      else {
+        let uploadStatusElem = document.querySelector('#ccs3-upload-status')
+        uploadStatusElem.className += ' ccs3-upload-status--error ccs3-upload-status--active'
+        uploadStatusElem.innerHTML = "Cannot add ${this.imgixUrl.split('/').pop()} to editor"
+        window.setTimeout(_ => {
+          uploadStatusElem.classList.remove('ccs3-upload-status--active')
+        }, 2000)
+        console.log('Cloudcannon CKEDITOR class might have change. Please update CKEDITOR element.')
+      }
+
+     })()`
   }
 
   render() {

@@ -20,7 +20,8 @@ class Uploader {
         promises.push(App.s3Service.upload(file, key))
       } else {
         const uploaderStatusService = new UploaderStatusService()
-        uploaderStatusService.showError(`${file.name} exist!`)
+        uploaderStatusService.showUploadError(`${file.name} exist!`)
+        this.submitUploadElem.removeClass('loading')
         return false
       }
     }
@@ -31,7 +32,7 @@ class Uploader {
 
   onUploadSuccess() {
     const uploaderStatusService = new UploaderStatusService()
-    uploaderStatusService.showSuccess('Upload successful!')
+    uploaderStatusService.showUploadSuccess('Upload successful!')
     this.fileElem.value = ''
     this.submitUploadElem.removeClass('loading')
     this.assetList.fetchAssets()
