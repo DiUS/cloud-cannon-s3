@@ -41,7 +41,11 @@ class S3Service {
     if (this.continuationToken) params.ContinuationToken = this.continuationToken
 
     this.s3.listObjectsV2(params, (err, data) => {
-      if (err) return
+      if (err) {
+        const s3StatusService = new S3StatusService()
+        s3StatusService.showConnectionError(err.code)
+        return
+      }
 
       images = images.concat(data.Contents)
 
