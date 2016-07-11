@@ -29,7 +29,7 @@ class S3Service {
       var params = {Key: key, ContentType: file.type, Body: file, Bucket: S3_BUCKET, ACL: 'public-read'}
 
       this.s3.upload(params, (err, data) => {
-        if(err) return
+        if(err) reject(err)
 
         resolve()
       })

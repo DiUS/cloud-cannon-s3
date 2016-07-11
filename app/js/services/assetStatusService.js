@@ -23,6 +23,7 @@ class AssetStatusService {
   }
 
   showError(message) {
+    console.error(message)
     this.statusElem.addClass('ccs3-asset-status--error')
     this.statusElem.innerHTML = message
     this.showStatus()

@@ -26,8 +26,10 @@ class Uploader {
       }
     }
 
+    const assetStatusService = new AssetStatusService()
     Promise.all(promises)
       .then(this.onUploadSuccess.bind(this))
+      .catch(assetStatusService.showError)
   }
 
   onUploadSuccess() {
