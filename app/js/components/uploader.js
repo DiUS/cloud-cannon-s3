@@ -8,6 +8,7 @@ class Uploader {
 
   onUploadSubmit(e) {
     if (e.target.id !== this.submitUploadElem.id) return false
+    if (this.fileElem.files.length === 0) return false
 
     const promises = []
     this.submitUploadElem.addClass('loading')
