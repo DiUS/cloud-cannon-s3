@@ -3,13 +3,13 @@
   "name": "DiUS Cloud Cannon Helper",
   "description": "Designed to make integrations more palatable in Cloud Cannon",
   "version": "1.0",
-  "icons": { 
+  "icons": {
     "16": "icon.png",
     "48": "icon.png",
     "128": "icon.png"
   },
   "browser_action": {
-    "default_icon": "icon.png" 
+    "default_icon": "icon.png"
   },
   "content_scripts": [{
     "matches": ["https://app.cloudcannon.com/editor*"],
@@ -25,7 +25,8 @@
       "./app/js/template.js",
       "./app/js/services/s3Service.js",
       "./app/js/services/fileService.js",
-      "./app/js/services/statusService.js",
+      "./app/js/services/uploaderStatusService.js",
+      "./app/js/services/s3StatusService.js",
       "./app/js/components/container.js",
       "./app/js/components/asset-drawer.js",
       "./app/js/components/asset-list.js",
