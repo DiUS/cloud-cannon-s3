@@ -42,11 +42,11 @@ class Image {
        if(markdownEditor)
          markdownEditor.insertHtml('<img src="${this.imgixUrl}">')
       else {
-        let uploadStatusElem = document.querySelector('#ccs3-upload-status')
-        uploadStatusElem.className += ' ccs3-upload-status--error ccs3-upload-status--active'
+        let uploadStatusElem = document.querySelector('#ccs3-asset-status')
+        uploadStatusElem.className += ' ccs3-asset-status--error ccs3-asset-status--active'
         uploadStatusElem.innerHTML = "Cannot add ${this.imgixUrl.split('/').pop()} to editor"
         window.setTimeout(_ => {
-          uploadStatusElem.classList.remove('ccs3-upload-status--active')
+          uploadStatusElem.classList.remove('ccs3-asset-status--active')
         }, 2000)
         console.log('Cloudcannon CKEDITOR class might have change. Please update CKEDITOR element.')
       }

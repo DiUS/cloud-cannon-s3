@@ -6,7 +6,7 @@ const templateHTML =
 
   <a href="#" id="ccs3-close" class="ccs3-asset-drawer__close">&times;</a>
 
-  <div id="ccs3-upload-status" class="ccs3-upload-status"></div>
+  <div id="ccs3-asset-status" class="ccs3-asset-status"></div>
 
   <div class="ccs3-container">
     <h4>Assets</h4>
