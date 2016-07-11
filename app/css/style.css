@@ -25,7 +25,7 @@
   top: 1px;
 }
 
-.ccs3-upload-status {
+.ccs3-asset-status {
   position: absolute;
   top: 0;
   width: 100%;
@@ -38,15 +38,15 @@
   opacity: 0.85;
 }
 
-.ccs3-upload-status--active {
+.ccs3-asset-status--active {
   transform: translateY(0);
 }
 
-.ccs3-upload-status--success {
+.ccs3-asset-status--success {
   background-color: #a2b842;
 }
 
-.ccs3-upload-status--error {
+.ccs3-asset-status--error {
   background-color: #c12834;
 }
 

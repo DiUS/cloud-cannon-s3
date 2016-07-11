@@ -25,7 +25,7 @@
       "./app/js/template.js",
       "./app/js/services/s3Service.js",
       "./app/js/services/fileService.js",
-      "./app/js/services/uploaderStatusService.js",
+      "./app/js/services/assetStatusService.js",
       "./app/js/services/s3StatusService.js",
       "./app/js/components/container.js",
       "./app/js/components/asset-drawer.js",
