@@ -23,6 +23,7 @@
       "./app/js/helpers.js",
       "./app/js/constants.js",
       "./app/js/template.js",
+      "./app/js/injectedScripts/ckMonitor.js",
       "./app/js/services/s3Service.js",
       "./app/js/services/fileService.js",
       "./app/js/services/assetStatusService.js",
