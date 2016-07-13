@@ -30,6 +30,7 @@
       "./app/js/components/container.js",
       "./app/js/components/asset-drawer.js",
       "./app/js/components/asset-list.js",
+      "./app/js/components/image-editor-template.js",
       "./app/js/components/image.js",
       "./app/js/components/file.js",
       "./app/js/components/search.js",
