@@ -23,4 +23,14 @@ const templateHTML =
     <div id="asset-list" class="magic-bar__asset-list"></div>
   </div>
 </div>
+<script>
+window.onload = function(e) {
+  console.log('onload')
+  document.getElementById('editor-iframe').contentWindow.document.addEventListener('click', function(e) {
+    if(!e.target.className.includes('cke_editable')) {
+      console.log(this)
+    }
+  })
+}
+</script>
 `
