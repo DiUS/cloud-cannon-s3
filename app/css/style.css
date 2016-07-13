@@ -65,6 +65,13 @@
   float: right;
 }
 
+#ccs3-image-sizing fieldset{
+  display: inline-block;
+  width: 48%;
+  border: none;
+  padding: 0;
+}
+
 .ccs3-btn {
   background: #2e7de1;
   border: none;

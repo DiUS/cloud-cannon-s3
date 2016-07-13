@@ -1,13 +1,32 @@
 class Image {
   constructor(image) {
     this.image = image
+    this.imageWidth = document.getElementById('image-width')
+    this.imageHeight = document.getElementById('image-height')
     this.imgixUrl = this.buildImgixUrl()
     this.s3Url = this.buildS3Url()
     document.addEventListener('click', this.onImageClick.bind(this))
   }
 
   buildImgixUrl() {
-    return `${IMGIX_PREFIX_URL}/${this.image.Key}`.replace(/images\//, '')
+    const imgSrc = `${IMGIX_PREFIX_URL}/${this.image.Key}`.replace(/images\//, '')
+
+    if(this.imageWidth.value !== "" || this.imageHeight.value !== "")
+      return `${imgSrc}${this.buildCustomImageSizeString()}`
+    else
+      return imgSrc
+  }
+
+  buildCustomImageSizeString() {
+    let imageSize = []
+
+    if(this.imageWidth.value)
+      imageSize.push(`w=${this.imageWidth.value}`)
+
+    if(this.imageHeight.value)
+      imageSize.push(`h=${this.imageHeight.value}`)
+
+    return `?${imageSize.join('&')}`
   }
 
   buildS3Url() {
@@ -29,18 +48,22 @@ class Image {
     if (e.target.dataset.path !== this.imgixUrl) return false
     e.preventDefault()
     const scriptElem = document.createElement('script')
-    scriptElem.textContent = this.getScriptElem()
+
+    let imageString = this.buildImgixUrl()
+
+    scriptElem.textContent = this.getScriptElem(imageString)
 
     document.body.appendChild(scriptElem)
     scriptElem.parentNode.removeChild(scriptElem)
   }
 
-  getScriptElem () {
+  getScriptElem (imageString) {
+
     return `(function () {
        let iframeCKEDITOR = document.getElementById('editor-iframe').contentWindow.CKEDITOR
        let markdownEditor = iframeCKEDITOR.instances['markdown-editor-wrapper']
        if(markdownEditor)
-         markdownEditor.insertHtml('<img src="${this.imgixUrl}">')
+         markdownEditor.insertHtml('<img src="${imageString}">')
       else {
         let uploadStatusElem = document.querySelector('#ccs3-asset-status')
         uploadStatusElem.className += ' ccs3-asset-status--error ccs3-asset-status--active'
