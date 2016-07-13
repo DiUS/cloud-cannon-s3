@@ -20,6 +20,16 @@ const templateHTML =
 
     <input type="text" id="ccs3-search-filter" placeholder="Search...">
 
+    <div id="ccs3-image-sizing" class="ccs3-image-sizing">
+      <fieldset>
+        <label for="width">Width</label>
+        <input type="text" id="image-width" placeholder="Auto"/>
+      </fieldset>
+      <fieldset>
+        <label for="height">Height</label>
+        <input type="text" id="image-height" placeholder="Auto"/>
+      </fieldset>
+    </div>
     <div id="asset-list" class="magic-bar__asset-list"></div>
   </div>
 </div>
