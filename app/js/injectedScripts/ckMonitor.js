@@ -21,7 +21,7 @@ class CkMonitor {
         return iframeElem.contentWindow && iframeElem.contentWindow.CKEDITOR
       }
 
-      waitFor(test, function() {
+      function watchEditors() {
         // Careful, there is a CKEDITOR instance on the global document, but it is the wrong one!
         let iframeCKEDITOR = document.querySelector('#editor-iframe').contentWindow.CKEDITOR
         for (editor in iframeCKEDITOR.instances) {
@@ -29,6 +29,11 @@ class CkMonitor {
             CURRENT_CKEDITOR = this.name
           })
         }
+      }
+      
+      waitFor(test, watchEditors)
+      window.addEventListener('hashchange', function() {
+        waitFor(test, watchEditors)
       })
     `
     document.body.appendChild(scriptElem)
