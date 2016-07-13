@@ -61,7 +61,7 @@ class Image {
 
     return `(function () {
        let iframeCKEDITOR = document.getElementById('editor-iframe').contentWindow.CKEDITOR
-       let markdownEditor = iframeCKEDITOR.instances['markdown-editor-wrapper']
+       let markdownEditor = iframeCKEDITOR.instances[CURRENT_CKEDITOR]
        if(markdownEditor)
          markdownEditor.insertHtml('<img src="${imageString}">')
       else {
