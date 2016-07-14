@@ -1,7 +1,6 @@
 class Image {
   constructor(image) {
-    const s3Service = new S3Service()
-    this.s3BaseUrl = s3Service.s3BaseUrl()
+    this.s3BaseUrl = App.s3Service.s3BaseUrl()
     this.image = image
     this.imageWidth = document.getElementById('image-width')
     this.imageHeight = document.getElementById('image-height')

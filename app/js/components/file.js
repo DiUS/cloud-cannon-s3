@@ -1,7 +1,6 @@
 class File {
   constructor(file) {
-    const s3Service = new S3Service()
-    this.s3BaseUrl = s3Service.s3BaseUrl()
+    this.s3BaseUrl = App.s3Service.s3BaseUrl()
     this.file = file
     this.s3Url = this.buildS3Url()
   }

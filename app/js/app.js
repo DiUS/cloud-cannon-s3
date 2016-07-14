@@ -5,6 +5,9 @@ const App = {
       (resolve, reject) => {
         chrome.storage.sync.get('ccS3', items => {
           Object.assign(EXT_SETTINGS, items.ccS3)
+          if (!EXT_SETTINGS.outputBaseUrl) {
+            EXT_SETTINGS.outputBaseUrl = `${App.s3Service.s3BaseUrl()}/${S3_IMAGES_PREFIX}`
+          }
           resolve()
         })
       }

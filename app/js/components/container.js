@@ -1,6 +1,5 @@
 class Container {
   constructor() {
-    const s3Service = new S3Service()
     const templateHTML =
     `
     <a id="ccs3-s3Status" class="ccs3-s3Status"></a>
@@ -17,7 +16,7 @@ class Container {
         <div class="ccs3-magic-bar__uploader">
           <input type="file" id="file-upload" multiple="true" accept="${ACCEPTED_IMAGES.concat(ACCEPTED_PDF).join(',')}"/>
           <button type="submit" id="submit-upload" class="ccs3-btn ccs3-pull-right">
-            Submit<img class="ccs3-spinner" src="${s3Service.s3BaseUrl()}/images/assets/spinner.svg" />
+            Submit<img class="ccs3-spinner" src="${App.s3Service.s3BaseUrl()}/images/assets/spinner.svg" />
           </button>
         </div>
 
