@@ -1,11 +1,13 @@
 class File {
   constructor(file) {
+    const s3Service = new S3Service()
+    this.s3BaseUrl = s3Service.s3BaseUrl()
     this.file = file
     this.s3Url = this.buildS3Url()
   }
 
   buildS3Url() {
-    return `${S3_PREFIX_URL}/${this.file.Key}`
+    return `${this.s3BaseUrl}/${this.file.Key}`
   }
 
   render() {
@@ -15,7 +17,7 @@ class File {
           ${this.buildS3Url().split('/').pop()}
         </div>
         <button data-ccs3-tooltip="success" class="ccs3-btn ccs3-btn--icon btn-copy-asset tooltip-bottom" data-clipboard-text="${this.s3Url}">
-          <img src="${S3_PREFIX_URL}/images/assets/clipboard.svg" />
+          <img src="${this.s3BaseUrl}/images/assets/clipboard.svg" />
         </button>
       </div>
     `

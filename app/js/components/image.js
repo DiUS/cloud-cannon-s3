@@ -1,15 +1,17 @@
 class Image {
   constructor(image) {
+    const s3Service = new S3Service()
+    this.s3BaseUrl = s3Service.s3BaseUrl()
     this.image = image
     this.imageWidth = document.getElementById('image-width')
     this.imageHeight = document.getElementById('image-height')
-    this.imgixUrl = this.buildImgixUrl()
+    this.outputUrl = this.buildOutputUrl()
     this.s3Url = this.buildS3Url()
     document.addEventListener('click', this.onImageClick.bind(this))
   }
 
-  buildImgixUrl() {
-    const imgSrc = `${IMGIX_PREFIX_URL}/${this.image.Key}`.replace(/images\//, '')
+  buildOutputUrl() {
+    const imgSrc = `${EXT_SETTINGS.outputBaseUrl}/${this.image.Key}`.replace(/images\//, '')
 
     if(this.imageWidth.value !== "" || this.imageHeight.value !== "")
       return `${imgSrc}${this.buildCustomImageSizeString()}`
@@ -30,26 +32,26 @@ class Image {
   }
 
   buildS3Url() {
-    return `${S3_PREFIX_URL}/${this.image.Key}`
+    return `${this.s3BaseUrl}/${this.image.Key}`
   }
 
   buildImageElement() {
     return `
       <div class="magic-bar__asset-wrapper">
-        <img src="${this.s3Url}" class="magic-bar__image" data-path="${this.imgixUrl}">
-        <button data-ccs3-tooltip="success" class="ccs3-btn ccs3-btn--icon btn-copy-asset tooltip-bottom" data-clipboard-text="${this.imgixUrl}">
-          <img src="${S3_PREFIX_URL}/images/assets/clipboard.svg" />
+        <img src="${this.s3Url}" class="magic-bar__image" data-path="${this.outputUrl}">
+        <button data-ccs3-tooltip="success" class="ccs3-btn ccs3-btn--icon btn-copy-asset tooltip-bottom" data-clipboard-text="${this.outputUrl}">
+          <img src="${this.s3BaseUrl}/images/assets/clipboard.svg" />
         </button>
       </div>
     `
   }
 
   onImageClick(e) {
-    if (e.target.dataset.path !== this.imgixUrl) return false
+    if (e.target.dataset.path !== this.outputUrl) return false
     e.preventDefault()
     const scriptElem = document.createElement('script')
 
-    let imageString = this.buildImgixUrl()
+    let imageString = this.buildOutputUrl()
 
     scriptElem.textContent = this.getScriptElem(imageString)
 
@@ -67,7 +69,7 @@ class Image {
       else {
         let uploadStatusElem = document.querySelector('#ccs3-asset-status')
         uploadStatusElem.className += ' ccs3-asset-status--error ccs3-asset-status--active'
-        uploadStatusElem.innerHTML = "Cannot add ${this.imgixUrl.split('/').pop()} to editor"
+        uploadStatusElem.innerHTML = "Cannot add ${this.outputUrl.split('/').pop()} to editor"
         window.setTimeout(_ => {
           uploadStatusElem.classList.remove('ccs3-asset-status--active')
         }, 2000)
