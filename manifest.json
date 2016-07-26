@@ -1,15 +1,14 @@
 {
   "manifest_version": 2,
-  "name": "DiUS Cloud Cannon Helper",
-  "description": "Designed to make integrations more palatable in Cloud Cannon",
-  "version": "1.0",
+  "name": "CloudCannon S3",
+  "version": "1.1",
+  "description": "Designed to make AWS S3 integrations more palatable in CloudCannon",
   "icons": {
-    "16": "icon.png",
-    "48": "icon.png",
-    "128": "icon.png"
+    "48": "icon-48x48.png",
+    "128": "icon-128x128.png"
   },
   "browser_action": {
-    "default_icon": "icon.png"
+    "default_icon": "icon-128x128.png"
   },
   "content_scripts": [{
     "matches": ["https://app.cloudcannon.com/editor*"],
@@ -22,7 +21,6 @@
       "./app/js/vendor/clipboard.min.js",
       "./app/js/helpers.js",
       "./app/js/constants.js",
-      "./app/js/template.js",
       "./app/js/injectedScripts/ckMonitor.js",
       "./app/js/services/s3Service.js",
       "./app/js/services/fileService.js",
@@ -38,11 +36,12 @@
       "./app/js/app.js"
     ]
   }],
-  "permissions": [
-    "storage"
-  ],
   "options_ui": {
     "page": "./app/options/options.html",
     "chrome_style": true
-  }
+  },
+  "permissions": [
+    "storage"
+  ],
+  "short_name": "ccs3"
 }

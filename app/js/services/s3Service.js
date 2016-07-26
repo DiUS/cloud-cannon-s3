@@ -5,15 +5,16 @@ class S3Service {
   }
 
   configure() {
-    return new Promise(
-      (resolve, reject) => {
-        chrome.storage.sync.get('ccS3', items => {
-          AWS.config.update(items.ccS3)
-          this.s3 = new AWS.S3()
-          resolve()
-        })
-      }
-    )
+    AWS.config.update({
+      accessKeyId: EXT_SETTINGS.accessKeyId,
+      secretAccessKey: EXT_SETTINGS.secretAccessKey,
+      region: EXT_SETTINGS.region
+    })
+    this.s3 = new AWS.S3()
+  }
+
+  s3BaseUrl() {
+    return `https://s3-${EXT_SETTINGS.region}.amazonaws.com/${EXT_SETTINGS.bucket}`
   }
 
   loadImages() {
@@ -26,7 +27,7 @@ class S3Service {
 
   upload(file, key) {
     return new Promise((resolve,reject) => {
-      var params = {Key: key, ContentType: file.type, Body: file, Bucket: S3_BUCKET, ACL: 'public-read'}
+      var params = {Key: key, ContentType: file.type, Body: file, Bucket: EXT_SETTINGS.bucket, ACL: 'public-read'}
 
       this.s3.upload(params, (err, data) => {
         if(err) reject(err)
@@ -37,7 +38,7 @@ class S3Service {
   }
 
   buildImageList(images, deferred) {
-    const params = { Bucket: S3_BUCKET }
+    const params = { Bucket: EXT_SETTINGS.bucket }
     if (this.continuationToken) params.ContinuationToken = this.continuationToken
 
     this.s3.listObjectsV2(params, (err, data) => {

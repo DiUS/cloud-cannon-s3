@@ -8,12 +8,13 @@
     table { width: 100%; }
     input { width: 100%; }
     .button { text-align: right; }
+    .status { color: #0078A0; }
   </style>
 </head>
 
 <body>
   
-  <div id="status"></div>
+  <div id="status" class="status"></div>
 
   <table>
     <tr>
@@ -29,6 +30,16 @@
     <tr>
       <td class="label"><label>AWS region: </label></td>
       <td><input type="text" name="aws-region" id="aws-region"></td>
+    </tr>
+
+    <tr>
+      <td class="label"><label>Bucket name: </label></td>
+      <td><input type="text" name="aws-bucket" id="aws-bucket"></td>
+    </tr>
+
+    <tr>
+      <td class="label"><label>Output base url: </label></td>
+      <td><input type="text" name="output-base-url" id="output-base-url"></td>
     </tr>
 
     <tr>
