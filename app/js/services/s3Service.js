@@ -4,7 +4,8 @@ class S3Service {
     this.continuationToken = null
   }
 
-  configure() {
+  configure(container) {
+    this.container = container
     AWS.config.update({
       accessKeyId: EXT_SETTINGS.accessKeyId,
       secretAccessKey: EXT_SETTINGS.secretAccessKey,
@@ -44,18 +45,18 @@ class S3Service {
     this.s3.listObjectsV2(params, (err, data) => {
       if (err) {
         const s3StatusService = new S3StatusService(err)
-        s3StatusService.showConnectionError()
         return
-      }
-
-      images = images.concat(data.Contents)
-
-      if (data.IsTruncated) {
-        this.continuationToken = data.NextContinuationToken
-        this.buildImageList(images, deferred)
       } else {
-        this.continuationToken = null
-        deferred.resolve(images)
+        this.container.showMeAssetLink()
+        images = images.concat(data.Contents)
+
+        if (data.IsTruncated) {
+          this.continuationToken = data.NextContinuationToken
+          this.buildImageList(images, deferred)
+        } else {
+          this.continuationToken = null
+          deferred.resolve(images)
+        }
       }
     })
   }

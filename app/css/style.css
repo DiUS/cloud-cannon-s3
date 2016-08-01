@@ -130,22 +130,22 @@
   top: auto;
   width: 100%;
   max-width: 300px;
-  display: flex;
+  display: none;
   align-items: center;
   padding: 10px 30px;
   box-sizing: border-box;
 }
+
+.ccs3-show-me--show, .ccs3-s3Status--show {
+  display: flex;
+}
+
 .ccs3-show-me {
   background-color: #21366D;
   z-index: 100;
 }
 
-.css3-s3Status {
-  display: none;
-}
-
 .ccs3-s3Status--show{
-  display: block;
   background-color: #C12834;
   z-index: 101;
 }
