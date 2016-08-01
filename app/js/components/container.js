@@ -42,5 +42,10 @@ class Container {
     extensionContainer.id = this.containerId
     document.querySelector('body').appendChild(extensionContainer)
     extensionContainer.innerHTML = templateHTML
+    this.showMeElement = document.getElementById('ccs3-show-me')
+  }
+
+  showMeAssetLink() {
+    this.showMeElement.addClass('ccs3-show-me--show')
   }
 }

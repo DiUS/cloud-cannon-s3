@@ -1,4 +1,4 @@
-const App = { 
+const App = {
   s3Service: new S3Service(),
   configure: _ => {
     return new Promise(
@@ -17,8 +17,8 @@ const App = {
 
 App.configure()
   .then(_ => {
-    new Container()
-    App.s3Service.configure()
+    const container = new Container()
+    App.s3Service.configure(container)
     const ckMonitor = new CkMonitor()
     const assetDrawer = new AssetDrawer()
     const assetList = new AssetList()
