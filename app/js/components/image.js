@@ -6,7 +6,6 @@ class Image {
     this.imageHeight = document.getElementById('image-height')
     this.outputUrl = this.buildOutputUrlOnLoad()
     this.s3Url = this.buildS3Url()
-    //document.addEventListener('click', this.onImageClick.bind(this))
   }
 
   buildOutputUrlOnLoad() {
