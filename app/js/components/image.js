@@ -4,14 +4,21 @@ class Image {
     this.image = image
     this.imageWidth = document.getElementById('image-width')
     this.imageHeight = document.getElementById('image-height')
-    this.outputUrl = this.buildOutputUrl()
+    this.outputUrl = this.buildOutputUrlOnLoad()
     this.s3Url = this.buildS3Url()
-    document.addEventListener('click', this.onImageClick.bind(this))
   }
 
-  buildOutputUrl() {
+  buildOutputUrlOnLoad() {
     const imgSrc = `${EXT_SETTINGS.outputBaseUrl}/${this.image.Key}`.replace(/images\//, '')
+    return this.buildOutputUrlWithImageSize(imgSrc)
+  }
 
+  buildOutputUrlOnClick() {
+    const imgSrc = this.image
+    return this.buildOutputUrlWithImageSize(imgSrc)
+  }
+
+  buildOutputUrlWithImageSize(imgSrc) {
     if(this.imageWidth.value !== "" || this.imageHeight.value !== "")
       return `${imgSrc}${this.buildCustomImageSizeString()}`
     else
@@ -45,12 +52,10 @@ class Image {
     `
   }
 
-  onImageClick(e) {
-    if (e.target.dataset.path !== this.outputUrl) return false
-    e.preventDefault()
+  addImageOnClick() {
     const scriptElem = document.createElement('script')
 
-    let imageString = this.buildOutputUrl()
+    let imageString = this.buildOutputUrlOnClick()
 
     scriptElem.textContent = this.getScriptElem(imageString)
 

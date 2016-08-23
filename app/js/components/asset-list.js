@@ -5,6 +5,7 @@ class AssetList {
     this.continuationToken = null
     this.maxCount = 10
     this.fetchAssets()
+    document.addEventListener('click', this.onAssetsListClick.bind(this.assetListElem))
   }
 
   fetchAssets() {
@@ -41,6 +42,14 @@ class AssetList {
     else {
       return 0
     }
+  }
+
+  onAssetsListClick(e) {
+    const imagePath = e.target.dataset.path
+    if(imagePath == 'undefined') return false
+
+    if(imagePath)
+      new Image(imagePath).addImageOnClick()
   }
 
   render(assets) {
