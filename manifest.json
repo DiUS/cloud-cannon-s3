@@ -1,7 +1,7 @@
 {
   "manifest_version": 2,
   "name": "CloudCannon S3",
-  "version": "1.6.5",
+  "version": "1.6.6",
   "description": "Designed to make AWS S3 integrations more palatable in CloudCannon",
   "icons": {
     "48": "icon-48x48.png",

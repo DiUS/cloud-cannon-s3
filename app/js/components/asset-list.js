@@ -3,7 +3,7 @@ class AssetList {
     this.assetListElem = document.querySelector('#asset-list')
     this.assets = []
     this.continuationToken = null
-    this.maxCount = 10
+    this.maxCount = 20
     this.fetchAssets()
     document.addEventListener('click', this.onAssetsListClick.bind(this.assetListElem))
   }
