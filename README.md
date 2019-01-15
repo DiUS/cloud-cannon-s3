@@ -24,9 +24,10 @@ This project is a chrome extension allowing users to upload and browse images fr
 
 - Go to [chrome developer dashboard](https://chrome.google.com/webstore/developer/dashboard)
 
+- You have to be a member of the _ccs3-admins_ to be able to edit/publish a new version
+
 - Click on _Edit_ for this extension
 
 - Click _Upload updated package_ and follow the instructions to upload the `.zip` you created
 
 - Once uploaded, make sure you _Publish changes_ on the extension edit page
-
